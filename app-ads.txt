@@ -1,0 +1,3 @@
+# app-ads.txt for dattech-hub.github.io
+# Add the line AdMob gives you below (AdMob > Apps > app-ads.txt), in this form:
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy – AutoMacro</title>
+  <style>
+:root {
+  --bg: #f6f7f9;
+  --card: #ffffff;
+  --text: #1c2330;
+  --muted: #5b6676;
+  --line: #e1e5ea;
+  --accent: #1f6feb;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #10141a;
+    --card: #181e27;
+    --text: #e8ecf1;
+    --muted: #9aa5b4;
+    --line: #2a323e;
+    --accent: #6ea8ff;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 16px 64px;
+}
+header.site {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+header.site .brand { font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
+header.site nav a { margin-left: 16px; }
+header.site nav a:first-child { margin-left: 0; }
+h1 { font-size: 32px; line-height: 1.2; margin: 0 0 8px; }
+h2 { font-size: 20px; margin: 36px 0 8px; }
+p, ul { margin: 0 0 14px; }
+ul { padding-left: 22px; }
+a { color: var(--accent); }
+.lead { font-size: 18px; color: var(--muted); }
+.muted { color: var(--muted); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.card h2 { margin-top: 0; }
+footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+}
+  </style>
+</head>
+<body>
+<main>
+  <header class="site">
+    <a class="brand" href="./">DatTech</a>
+    <nav>
+      <a href="./">AutoMacro</a>
+      <a href="./#support">Support</a>
+    </nav>
+  </header>
+
+  <h1>Privacy Policy</h1>
+  <p class="muted">AutoMacro for Android · Effective 13 November 2026</p>
+
+  <p>This policy explains what the AutoMacro app ("the app"), published by DatTech ("we"), does with information on your device.</p>
+
+  <div class="card">
+    <h2>Summary</h2>
+    <ul>
+      <li>The app has no account and we run no servers. We do not receive your macros, images, screen content or settings.</li>
+      <li>Everything you create is stored on your device.</li>
+      <li>The free version shows ads from Google AdMob, which collects some device data as described below.</li>
+    </ul>
+  </div>
+
+  <h2>Data stored on your device</h2>
+  <p>The app stores the following in its private storage on your device:</p>
+  <ul>
+    <li>Macros and their steps, variables and run logs.</li>
+    <li>Images you crop from the screen to use as search templates.</li>
+    <li>App settings, such as language and editor size.</li>
+  </ul>
+  <p>This data is not sent to us or to anyone else. It leaves your device only when you export a macro to a file and share that file yourself.</p>
+
+  <h2>Accessibility Service</h2>
+  <p>The app uses the Android AccessibilityService API for one purpose: to perform the taps, long presses and swipes that you defined in your macros, on your behalf, in the apps you choose to automate.</p>
+  <ul>
+    <li>The service runs only after you enable it in Android settings, and you can disable it there at any time.</li>
+    <li>The app does not use the service to collect or share personal or sensitive data, such as text you type, passwords or messages.</li>
+    <li>Nothing obtained through the service is sent off your device.</li>
+  </ul>
+
+  <h2>Screen capture and text recognition</h2>
+  <p>When a macro contains steps that look at the screen (find an image, read text or a number), the app captures the screen using Android's screen capture permission, which you grant each time through the system dialog.</p>
+  <ul>
+    <li>Captured frames are processed in memory on your device and discarded. They are not saved unless you crop a template image yourself, and they are never uploaded.</li>
+    <li>Text is recognized on the device with Google ML Kit. The image is not sent to Google. ML Kit may send Google limited diagnostic and usage metrics about the library itself; see <a href="https://developers.google.com/ml-kit/terms">ML Kit Terms &amp; Privacy</a>.</li>
+  </ul>
+
+  <h2>Advertising (free version)</h2>
+  <p>The free version shows ads provided by Google AdMob. To deliver and measure ads, Google may collect and process data such as your device's advertising ID, IP address, device and app information, and how you interact with ads.</p>
+  <ul>
+    <li>Where required by law, the app asks for your consent before personalized ads are shown, and you can change your choice later in the app's settings.</li>
+    <li>You can reset or delete your advertising ID in Android settings.</li>
+    <li>How Google uses this data: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</li>
+  </ul>
+  <p>The Pro upgrade removes ads.</p>
+
+  <h2>Purchases</h2>
+  <p>The Pro upgrade is sold through Google Play. Payment is handled by Google; we do not receive your card or bank details. We can see an order ID and purchase status, which we use only to unlock Pro and to handle refunds.</p>
+
+  <h2>Other permissions</h2>
+  <ul>
+    <li><strong>Display over other apps:</strong> shows the floating controls and editor.</li>
+    <li><strong>Notifications:</strong> shows the status of a running macro.</li>
+    <li><strong>Storage (older Android versions only):</strong> saves and opens exported macro files.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>The app is not directed to children under 13, and we do not knowingly collect personal data from children.</p>
+
+  <h2>Keeping and deleting data</h2>
+  <p>Your data stays on your device until you delete it. You can delete individual macros in the app, or remove everything by clearing the app's data or uninstalling the app. Since we hold no copy, there is nothing for us to delete on our side.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If the app changes in a way that affects your data, we will update this page and the effective date above.</p>
+
+  <h2>Contact</h2>
+  <p>DatTech · <a href="mailto:lieuhongquocdat.tech@gmail.com">lieuhongquocdat.tech@gmail.com</a></p>
+
+  <footer>© 2026 DatTech</footer>
+</main>
+</body>
+</html>
