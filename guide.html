@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guide - Auto Clicker - Auto Macro</title>
+  <meta name="description" content="How to use every function of Auto Clicker - Auto Macro: touch, time, screen detection, conditions, loops and variables.">
+  <style>
+:root { --bg:#f6f7f9; --card:#fff; --text:#1c2330; --muted:#5b6676; --line:#e1e5ea; --accent:#1f6feb; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#10141a; --card:#181e27; --text:#e8ecf1; --muted:#9aa5b4; --line:#2a323e; --accent:#6ea8ff; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+main { max-width:760px; margin:0 auto; padding:32px 16px 64px; }
+header.site { display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
+header.site .brand { font-weight:700; font-size:18px; color:var(--text); text-decoration:none; }
+header.site nav a, header.site nav button { margin-left:14px; }
+a { color:var(--accent); }
+h1 { font-size:28px; line-height:1.2; margin:0 0 6px; }
+.lead { color:var(--muted); margin:0 0 20px; }
+button.lang { font:inherit; border:1px solid var(--line); background:var(--card); color:var(--text); border-radius:8px; padding:2px 10px; cursor:pointer; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:16px 0; }
+.card h2 { font-size:18px; margin:0 0 8px; }
+ol, ul { margin:0 0 10px; padding-left:22px; }
+details.group { background:var(--card); border:1px solid var(--line); border-radius:12px; margin:12px 0; overflow:hidden; }
+details.group > summary { list-style:none; cursor:pointer; padding:12px 16px; color:#fff; font-weight:700; display:flex; justify-content:space-between; align-items:center; }
+details.group > summary::-webkit-details-marker { display:none; }
+details.group > summary::after { content:"▾"; }
+details.group[open] > summary::after { content:"▴"; }
+details.fn { border-top:1px solid var(--line); }
+details.fn > summary { list-style:none; cursor:pointer; padding:11px 16px; display:flex; gap:10px; align-items:baseline; }
+details.fn > summary::-webkit-details-marker { display:none; }
+details.fn > summary .name { font-weight:700; min-width:140px; }
+details.fn > summary .sum { color:var(--muted); flex:1; }
+details.fn > summary .tag { font-size:12px; border:1px solid var(--line); border-radius:6px; padding:0 6px; color:var(--muted); white-space:nowrap; }
+details.fn .body { padding:2px 16px 14px 16px; }
+details.fn .body h3 { font-size:14px; margin:10px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:.03em; }
+.video { position:relative; padding-top:56.25%; margin-top:10px; border-radius:10px; overflow:hidden; background:#000; }
+.video iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+footer { margin-top:40px; padding-top:14px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
+  </style>
+</head>
+<body>
+<main>
+  <header class="site">
+    <a class="brand" href="./">DatTech</a>
+    <nav>
+      <a href="./#support" data-t="support">Support</a>
+      <a href="privacy.html" data-t="privacy">Privacy Policy</a>
+      <button class="lang" id="langBtn" type="button">Tiếng Việt</button>
+    </nav>
+  </header>
+
+  <h1 data-t="title">Guide</h1>
+  <p class="lead" data-t="lead">Every function of Auto Clicker - Auto Macro, grouped the same way as the buttons in the app. Tap a group, then a function.</p>
+
+  <div class="card" id="start">
+    <h2 data-t="startTitle">Getting started</h2>
+    <ol id="startList"></ol>
+  </div>
+
+  <div id="groups"></div>
+
+  <div class="card" id="feedback">
+    <h2 data-t="fbTitle">Feedback</h2>
+    <p data-t="fbText">Found a bug or want a function added? In the app open the menu and choose Feedback, or write to us directly:</p>
+    <p><a href="mailto:lieuhongquocdat.tech@gmail.com?subject=Auto%20Clicker%20-%20Auto%20Macro%20feedback">lieuhongquocdat.tech@gmail.com</a></p>
+  </div>
+
+  <footer>© DatTech · <a href="./">Home</a></footer>
+</main>
+
+<script>
+/* Nhóm và chức năng: giữ khớp với app/src/main/java/com/automacro/app/ui/help/FnCatalog.kt (id = anchor).
+   video: mã video YouTube (phần sau "v="). Để trống thì không hiện khung video. */
+const UI = {
+  en: { title:"Guide", lead:"Every function of Auto Clicker - Auto Macro, grouped the same way as the buttons in the app. Tap a group, then a function.",
+        support:"Support", privacy:"Privacy Policy", startTitle:"Getting started", what:"What it does", how:"How to add it", tip:"Tips", video:"Video",
+        free:"Free", pro:"Pro", fbTitle:"Feedback", fbText:"Found a bug or want a function added? In the app open the menu and choose Feedback, or write to us directly:", other:"Tiếng Việt",
+        start:[
+          "Open the app and accept the terms.",
+          "Tap <b>Open Floating Editor</b>. Allow <b>Display over other apps</b> and turn on the app's <b>Accessibility</b> service when asked. On Samsung the service is under <i>Installed apps</i>.",
+          "Allow screen capture when asked. It is only needed for functions that look at the screen (image, text, number).",
+          "Go to the app or game you want to automate. The editor floats on top: tap a button in the left column to add a step.",
+          "Press ▶ <b>Run</b> to try the macro, 💾 <b>Save</b> to keep it. The − button shrinks the editor to a small bubble; while a macro runs, a small bar lets you pause or stop it.",
+          "Steps can be dragged by the ☰ handle to change their order, edited with the pencil, copied or deleted.",
+          "Functions marked Pro need the one-time Pro upgrade (or the 3-day trial). Click, Long, Swipe and Wait are free."
+        ] },
+  vi: { title:"Hướng dẫn", lead:"Mọi chức năng của Auto Clicker - Auto Macro, chia nhóm giống các nút trong app. Bấm vào nhóm, rồi bấm vào chức năng.",
+        support:"Hỗ trợ", privacy:"Chính sách quyền riêng tư", startTitle:"Bắt đầu", what:"Chức năng", how:"Cách thêm", tip:"Mẹo", video:"Video",
+        free:"Miễn phí", pro:"Pro", fbTitle:"Góp ý", fbText:"Gặp lỗi hoặc muốn thêm chức năng? Trong app mở menu và chọn Góp ý, hoặc viết thẳng cho chúng tôi:", other:"English",
+        start:[
+          "Mở app và đồng ý điều khoản.",
+          "Bấm <b>Mở Floating Editor</b>. Cho phép <b>Hiển thị trên ứng dụng khác</b> và bật dịch vụ <b>Trợ năng</b> của app khi được hỏi. Trên Samsung, dịch vụ nằm trong mục <i>Ứng dụng đã cài đặt</i>.",
+          "Cho phép chụp màn hình khi được hỏi. Quyền này chỉ cần cho các chức năng nhìn màn hình (hình, chữ, số).",
+          "Chuyển sang app hoặc game bạn muốn tự động hóa. Trình soạn nổi ở trên cùng: bấm một nút ở cột trái để thêm bước.",
+          "Bấm ▶ <b>Chạy</b> để thử, 💾 <b>Lưu</b> để giữ lại. Nút − thu trình soạn thành bong bóng nhỏ; khi macro đang chạy có thanh nhỏ để tạm dừng hoặc dừng.",
+          "Kéo biểu tượng ☰ để đổi thứ tự bước; dùng bút chì để sửa, ngoài ra có nút sao chép và xóa.",
+          "Chức năng ghi Pro cần mua Pro một lần (hoặc dùng thử 3 ngày). Click, Long, Swipe và Wait là miễn phí."
+        ] }
+};
+
+const GROUPS = [
+ { id:"touch", color:"#D32F2F", en:"Touch", vi:"Chạm", items:[
+  { id:"click", icon:"👆", name:"Click", free:true, video:"",
+    en:{ sum:"Tap one point on the screen.", how:["Tap <b>Click</b>.","Tap the point on the screen you want the macro to press. A numbered circle marks it; drag the circle to adjust."], tip:["Edit the step to change how long the press lasts (ms) or type exact X, Y.","<b>Random click ±</b> (Pro) shifts every tap by a few pixels so taps do not land on the exact same spot."] },
+    vi:{ sum:"Chạm vào một điểm trên màn hình.", how:["Bấm <b>Click</b>.","Chạm vào điểm bạn muốn macro bấm. Một vòng tròn có số đánh dấu điểm đó; kéo vòng tròn để chỉnh."], tip:["Sửa bước để đổi thời gian nhấn (ms) hoặc gõ tọa độ X, Y chính xác.","<b>Random click ±</b> (Pro) lệch mỗi lần chạm vài điểm ảnh để không bấm trùng đúng một chỗ."] } },
+  { id:"long-click", icon:"✋", name:"Long", free:true, video:"",
+    en:{ sum:"Press and hold one point for a set time.", how:["Tap <b>Long</b>.","Tap the point to hold.","Edit the step to set how long to hold (ms)."], tip:["Use it for buttons that need holding, or to open context menus."] },
+    vi:{ sum:"Nhấn giữ một điểm trong khoảng thời gian đã đặt.", how:["Bấm <b>Long</b>.","Chạm vào điểm cần giữ.","Sửa bước để đặt thời gian giữ (ms)."], tip:["Dùng cho nút cần nhấn giữ, hoặc để mở menu ngữ cảnh."] } },
+  { id:"swipe", icon:"👉", name:"Swipe", free:true, video:"",
+    en:{ sum:"Drag from one point to another.", how:["Tap <b>Swipe</b>.","Drag your finger on the screen from the start point to the end point."], tip:["Edit the step to change the start point, end point or duration (ms). A longer duration is a slower drag."] },
+    vi:{ sum:"Vuốt từ điểm này sang điểm khác.", how:["Bấm <b>Swipe</b>.","Kéo ngón tay trên màn hình từ điểm đầu tới điểm cuối."], tip:["Sửa bước để đổi điểm đầu, điểm cuối hoặc thời gian (ms). Thời gian dài hơn là vuốt chậm hơn."] } },
+  { id:"text", icon:"🔤", name:"Text", video:"",
+    en:{ sum:"Type text into the field that has focus.", how:["Add a Click step that taps the input field first.","Tap <b>Text</b> and type what the macro should enter."], tip:["The text goes into whichever field is focused when the step runs."] },
+    vi:{ sum:"Gõ chữ vào ô đang được chọn.", how:["Thêm một bước Click chạm vào ô nhập trước.","Bấm <b>Text</b> rồi gõ nội dung macro cần nhập."], tip:["Chữ được nhập vào ô đang được chọn lúc bước chạy."] } },
+  { id:"system", icon:"⚙️", name:"System", video:"",
+    en:{ sum:"Press Back, Home or Recents, or open or close an app.", how:["Tap <b>System</b>.","Choose a key (Back, Home, Recents), <b>Open App</b> or <b>Kill App</b>.","For Open / Kill, pick the app from the list."], tip:["Kill App followed by Open App restarts a game that has frozen."] },
+    vi:{ sum:"Bấm Back, Home, Đa nhiệm, hoặc mở / tắt một ứng dụng.", how:["Bấm <b>System</b>.","Chọn một phím (Back, Home, Recents), <b>Open App</b> hoặc <b>Kill App</b>.","Với Open / Kill, chọn ứng dụng trong danh sách."], tip:["Kill App rồi Open App giúp khởi động lại game bị đứng."] } },
+ ]},
+ { id:"time", color:"#5E35B1", en:"Time", vi:"Thời gian", items:[
+  { id:"wait", icon:"⏱️", name:"Wait", free:true, video:"",
+    en:{ sum:"Pause for a fixed time.", how:["Tap <b>Wait</b>.","Enter the duration and choose the unit (ms, sec, min, hour)."], tip:["Put a Wait after a tap that opens a new screen, so the screen has time to load."] },
+    vi:{ sum:"Chờ một khoảng thời gian cố định.", how:["Bấm <b>Wait</b>.","Nhập thời gian và chọn đơn vị (ms, giây, phút, giờ)."], tip:["Đặt Wait sau cú chạm mở màn hình mới, để màn hình kịp tải."] } },
+  { id:"random-wait", icon:"🎲", name:"Random Wait", video:"",
+    en:{ sum:"Pause for a random time between two limits.", how:["Tap <b>Random Wait</b>.","Enter <b>From</b> and <b>To</b> and choose the unit."], tip:["Makes the rhythm of a macro less regular."] },
+    vi:{ sum:"Chờ một khoảng thời gian ngẫu nhiên giữa hai mốc.", how:["Bấm <b>Random Wait</b>.","Nhập <b>From</b> và <b>To</b> rồi chọn đơn vị."], tip:["Làm nhịp chạy của macro bớt đều."] } },
+  { id:"wait-until", icon:"🕐", name:"Wait Until", video:"",
+    en:{ sum:"Pause until a clock time such as 07:30.", how:["Tap <b>Wait Until</b>.","Type the time in 24-hour form: HH:mm or HH:mm:ss."], tip:["If that time has already passed today, the macro waits until the same time tomorrow."] },
+    vi:{ sum:"Chờ tới một giờ trong ngày, ví dụ 07:30.", how:["Bấm <b>Wait Until</b>.","Gõ giờ dạng 24 giờ: HH:mm hoặc HH:mm:ss."], tip:["Nếu hôm nay đã qua giờ đó, macro chờ tới giờ đó ngày mai."] } },
+  { id:"stop-after", icon:"🛑", name:"Stop After", video:"",
+    en:{ sum:"Stop the whole macro after a set duration.", how:["Tap <b>Stop After</b>, usually as the first step.","Enter how long the macro may run."], tip:["The macro stops between two steps, never in the middle of one."] },
+    vi:{ sum:"Dừng cả macro sau một khoảng thời gian.", how:["Bấm <b>Stop After</b>, thường đặt làm bước đầu.","Nhập thời gian macro được phép chạy."], tip:["Macro dừng ở ranh giới giữa hai bước, không dừng giữa một bước."] } },
+  { id:"timer-start", icon:"⏲️", name:"Timer Start", video:"",
+    en:{ sum:"Start a named stopwatch that IF Timer can check.", how:["Tap <b>Timer Start</b>.","Give the timer a name. It starts counting from 0 when this step runs."], tip:["Running Timer Start again for the same name resets it to 0."] },
+    vi:{ sum:"Bắt đầu một đồng hồ bấm giờ có tên để IF Timer kiểm tra.", how:["Bấm <b>Timer Start</b>.","Đặt tên cho đồng hồ. Nó đếm từ 0 khi bước này chạy."], tip:["Chạy lại Timer Start cùng tên sẽ đếm lại từ 0."] } },
+ ]},
+ { id:"screen", color:"#2E7D32", en:"Screen", vi:"Màn hình", items:[
+  { id:"click-image", icon:"🎯", name:"Click Image", video:"",
+    en:{ sum:"Find a picture on the screen and tap it.", how:["Tap <b>Click Image</b>.","Choose <b>Capture new</b> (go to the app, tap the bubble, draw a box around the picture) or pick one from the library.","Optionally draw the region of the screen to search in."], tip:["Capture a small, distinctive part of the button, not the whole screen.","Edit the step to change the match threshold (0..1), the maximum search time and the search region.","A smaller search region is faster and gives fewer false matches."] },
+    vi:{ sum:"Tìm một hình trên màn hình rồi chạm vào.", how:["Bấm <b>Click Image</b>.","Chọn <b>Capture new</b> (chuyển sang app, bấm bong bóng, vẽ khung quanh hình) hoặc chọn hình có sẵn trong thư viện.","Có thể vẽ thêm vùng màn hình cần tìm."], tip:["Chụp một phần nhỏ, đặc trưng của nút, đừng chụp cả màn hình.","Sửa bước để đổi ngưỡng khớp (0..1), thời gian tìm tối đa và vùng tìm.","Vùng tìm nhỏ thì nhanh hơn và ít nhận nhầm hơn."] } },
+  { id:"click-text", icon:"🎯", name:"Click Text", video:"",
+    en:{ sum:"Find words on the screen and tap them.", how:["Tap <b>Click Text</b>.","Type the words to look for."], tip:["Text is read with on-device OCR, Latin letters only (English, Vietnamese…)."] },
+    vi:{ sum:"Tìm chữ trên màn hình rồi chạm vào.", how:["Bấm <b>Click Text</b>.","Gõ chữ cần tìm."], tip:["Chữ được đọc bằng OCR ngay trên máy, chỉ nhận chữ Latin (tiếng Anh, tiếng Việt…)."] } },
+  { id:"wait-text", icon:"🔍", name:"Wait Text", video:"",
+    en:{ sum:"Wait until the given words appear.", how:["Tap <b>Wait Text</b>.","Type the words to wait for."], tip:["Use it instead of a long fixed Wait when a screen loads at an unpredictable speed."] },
+    vi:{ sum:"Chờ tới khi chữ đã cho xuất hiện.", how:["Bấm <b>Wait Text</b>.","Gõ chữ cần chờ."], tip:["Dùng thay cho Wait cố định dài khi màn hình tải nhanh chậm thất thường."] } },
+  { id:"wait-number", icon:"🔢", name:"Wait Number", video:"",
+    en:{ sum:"Wait until a number can be read in an area.", how:["Tap <b>Wait Number</b>.","Go to the app, tap the bubble and draw the region containing the number.","Choose the condition (any number, or a comparison such as ≥ 10) and the maximum wait in seconds."], tip:["Numbers such as 1,234, 12.5K and 1.2M are understood."] },
+    vi:{ sum:"Chờ tới khi đọc được một con số trong một vùng.", how:["Bấm <b>Wait Number</b>.","Chuyển sang app, bấm bong bóng và vẽ vùng chứa con số.","Chọn điều kiện (số bất kỳ, hoặc phép so sánh như ≥ 10) và thời gian chờ tối đa tính bằng giây."], tip:["Hiểu được các dạng số như 1,234, 12.5K và 1.2M."] } },
+  { id:"image-to-text", icon:"🔤", name:"Image to Text", video:"",
+    en:{ sum:"Read the text in an area and show it.", how:["Tap <b>Image to Text</b>.","Go to the app, tap the bubble and draw the region to read.","Set how long the text stays on the screen."], tip:["Useful for checking what the app can actually read before building a condition on it."] },
+    vi:{ sum:"Đọc chữ trong một vùng rồi hiện lên.", how:["Bấm <b>Image to Text</b>.","Chuyển sang app, bấm bong bóng và vẽ vùng cần đọc.","Đặt thời gian hiển thị chữ trên màn hình."], tip:["Hữu ích để kiểm tra app đọc được gì trước khi dựng điều kiện dựa trên đó."] } },
+ ]},
+ { id:"if", color:"#E65100", en:"IF (conditions)", vi:"Điều kiện (IF)", items:[
+  { id:"if-image", icon:"🔀", name:"IF Image", video:"",
+    en:{ sum:"Run one branch when a picture is on the screen, another when it is not.", how:["Tap <b>IF Image</b> and capture or choose the picture.","The editor adds an IF block with a THEN part and an ELSE part.","Add or drag steps into THEN (picture found) and ELSE (not found)."], tip:["Leave ELSE empty if nothing should happen when the picture is missing."] },
+    vi:{ sum:"Chạy một nhánh khi thấy hình trên màn hình, nhánh khác khi không thấy.", how:["Bấm <b>IF Image</b> rồi chụp hoặc chọn hình.","Trình soạn thêm một khối IF gồm phần THEN và phần ELSE.","Thêm hoặc kéo bước vào THEN (thấy hình) và ELSE (không thấy)."], tip:["Để trống ELSE nếu không cần làm gì khi không thấy hình."] } },
+  { id:"if-text", icon:"🔀", name:"IF Text", video:"",
+    en:{ sum:"Run one branch when words are on the screen, another when they are not.", how:["Tap <b>IF Text</b> and type the words.","Put steps into THEN (words found) and ELSE (not found)."], tip:["Latin letters only."] },
+    vi:{ sum:"Chạy một nhánh khi thấy chữ trên màn hình, nhánh khác khi không thấy.", how:["Bấm <b>IF Text</b> rồi gõ chữ.","Đặt bước vào THEN (thấy chữ) và ELSE (không thấy)."], tip:["Chỉ nhận chữ Latin."] } },
+  { id:"if-image-to-text", icon:"🔀", name:"IF Image to Text", video:"",
+    en:{ sum:"Read an area and compare what was read.", how:["Tap <b>IF Image to Text</b>.","Go to the app, tap the bubble and draw the region to read.","Choose the comparison and the value to compare with."], tip:["For numbers, reading into a variable with Pic to Number and using IF Variable is usually more reliable."] },
+    vi:{ sum:"Đọc một vùng rồi so sánh nội dung đọc được.", how:["Bấm <b>IF Image to Text</b>.","Chuyển sang app, bấm bong bóng và vẽ vùng cần đọc.","Chọn phép so sánh và giá trị đem so."], tip:["Với con số, đọc vào biến bằng Pic to Number rồi dùng IF Variable thường ổn định hơn."] } },
+  { id:"if-variable", icon:"🔀", name:"IF Variable", video:"",
+    en:{ sum:"Compare a variable with a value or another variable.", how:["Create the variable first with <b>Set Variable</b>.","Tap <b>IF Variable</b>, choose the variable, the condition and the value.","Use <b>Add a condition</b> for more than one, joined by AND (all true) or OR (at least one true)."], tip:["The value can be a number, text or a time such as 12:30."] },
+    vi:{ sum:"So sánh một biến với một giá trị hoặc biến khác.", how:["Tạo biến trước bằng <b>Set Variable</b>.","Bấm <b>IF Variable</b>, chọn biến, điều kiện và giá trị.","Dùng <b>Add a condition</b> để thêm điều kiện, nối bằng AND (tất cả đúng) hoặc OR (ít nhất một đúng)."], tip:["Giá trị có thể là số, chữ hoặc giờ như 12:30."] } },
+  { id:"if-timer", icon:"🔀", name:"IF Timer", video:"",
+    en:{ sum:"Check how long a stopwatch has been running.", how:["Add a <b>Timer Start</b> step earlier in the macro.","Tap <b>IF Timer</b>, choose the timer, the condition, the amount and the unit (sec, min, hour)."], tip:["A timer that has not been started always takes the ELSE branch.","Example: every 10 minutes collect a reward, then restart the timer."] },
+    vi:{ sum:"Kiểm tra đồng hồ bấm giờ đã chạy được bao lâu.", how:["Thêm bước <b>Timer Start</b> ở phía trước trong macro.","Bấm <b>IF Timer</b>, chọn đồng hồ, điều kiện, con số và đơn vị (giây, phút, giờ)."], tip:["Đồng hồ chưa được bắt đầu thì luôn đi nhánh ELSE.","Ví dụ: cứ 10 phút nhận thưởng một lần, rồi bấm giờ lại."] } },
+ ]},
+ { id:"loop", color:"#AD1457", en:"Loop", vi:"Vòng lặp", items:[
+  { id:"loop", icon:"🔁", name:"Loop", video:"",
+    en:{ sum:"Repeat the steps inside a number of times, or forever.", how:["Tap <b>Loop</b>.","Choose how to repeat: N times (0 = forever), as many times as a variable says, or until a variable meets a condition.","Add or drag steps between Loop and Loop End."], tip:["Leave an endless loop with Break, or stop the macro from the control bar."] },
+    vi:{ sum:"Lặp các bước bên trong một số lần, hoặc mãi mãi.", how:["Bấm <b>Loop</b>.","Chọn cách lặp: N lần (0 = vô hạn), số lần theo giá trị một biến, hoặc lặp tới khi biến thỏa điều kiện.","Thêm hoặc kéo bước vào giữa Loop và Loop End."], tip:["Thoát vòng lặp vô hạn bằng Break, hoặc dừng macro từ thanh điều khiển."] } },
+  { id:"loop-time", icon:"⏳", name:"Loop Time", video:"",
+    en:{ sum:"Repeat the steps inside for a set duration.", how:["Tap <b>Loop Time</b>.","Enter how long to keep repeating and choose the unit."], tip:["When the time is up, the current pass still runs to its end, then the loop exits."] },
+    vi:{ sum:"Lặp các bước bên trong trong một khoảng thời gian.", how:["Bấm <b>Loop Time</b>.","Nhập thời gian lặp và chọn đơn vị."], tip:["Khi hết giờ, lượt đang chạy vẫn chạy hết rồi vòng lặp mới thoát."] } },
+  { id:"break", icon:"⛔️", name:"Break", video:"",
+    en:{ sum:"Leave the nearest loop.", how:["Inside a loop, usually inside an IF block, tap <b>Break</b>."], tip:["The macro continues with the step after that loop's end."] },
+    vi:{ sum:"Thoát vòng lặp gần nhất.", how:["Bên trong vòng lặp, thường là trong một khối IF, bấm <b>Break</b>."], tip:["Macro chạy tiếp từ bước sau điểm kết thúc của vòng lặp đó."] } },
+  { id:"break-all", icon:"⛔️", name:"Break All", video:"",
+    en:{ sum:"Leave every loop.", how:["Inside nested loops, tap <b>Break All</b>."], tip:["Use it when one condition should end all the loops at once."] },
+    vi:{ sum:"Thoát mọi vòng lặp.", how:["Bên trong các vòng lặp lồng nhau, bấm <b>Break All</b>."], tip:["Dùng khi một điều kiện cần kết thúc mọi vòng lặp cùng lúc."] } },
+ ]},
+ { id:"variable", color:"#3949AB", en:"Variable", vi:"Biến", items:[
+  { id:"set-variable", icon:"📝", name:"Set Variable", video:"",
+    en:{ sum:"Create a variable or give it a value.", how:["Tap <b>Set Variable</b>.","Choose an existing variable or <b>New value</b> and type a name.","Choose the type (number, text, logic, time) and the value source: typed by hand, read from the screen, the current time, or asked while running."], tip:["A variable must be set once before other steps can use it."] },
+    vi:{ sum:"Tạo một biến hoặc gán giá trị cho biến.", how:["Bấm <b>Set Variable</b>.","Chọn biến có sẵn hoặc <b>New value</b> rồi gõ tên.","Chọn kiểu (number, text, logic, time) và nguồn giá trị: nhập tay, đọc từ màn hình, giờ hiện tại, hoặc hỏi khi đang chạy."], tip:["Biến phải được Set một lần trước khi các bước khác dùng được."] } },
+  { id:"input-to-var", icon:"⌨️", name:"Input to Var", video:"",
+    en:{ sum:"Ask for the value in a box while the macro runs.", how:["Tap <b>Input to Var</b>.","Choose the variable and its type, a default value and an optional message.","Optionally set <b>Continue automatically after</b> N seconds (0 = wait until someone answers)."], tip:["A wrong entry (for example letters for a number) shows what is expected and must be typed again.","Skip keeps the value the variable already has, or uses the default.","The box has a Stop macro button."] },
+    vi:{ sum:"Hỏi giá trị bằng hộp nhập khi macro đang chạy.", how:["Bấm <b>Input to Var</b>.","Chọn biến và kiểu, giá trị mặc định và lời nhắc (không bắt buộc).","Có thể đặt <b>Tự chạy tiếp sau</b> N giây (0 = chờ tới khi có người nhập)."], tip:["Nhập sai kiểu (ví dụ gõ chữ cho biến số) sẽ được nhắc kiểu cần nhập và phải nhập lại.","Bỏ qua thì biến giữ giá trị đang có, hoặc nhận giá trị mặc định.","Hộp nhập có nút Dừng macro."] } },
+  { id:"change-variable", icon:"✏️", name:"Change Variable", video:"",
+    en:{ sum:"Calculate a new value from numbers or other variables.", how:["Tap <b>Change Variable</b>.","Choose the target variable.","Fill operand 1, optionally an operator and operand 2. Each operand is a typed value or another variable."], tip:["With no operator it simply copies operand 1 into the target."] },
+    vi:{ sum:"Tính giá trị mới từ con số hoặc biến khác.", how:["Bấm <b>Change Variable</b>.","Chọn biến đích.","Điền toán hạng 1, có thể thêm phép tính và toán hạng 2. Mỗi toán hạng là giá trị nhập tay hoặc một biến khác."], tip:["Không chọn phép tính thì chỉ chép toán hạng 1 vào biến đích."] } },
+  { id:"increase", icon:"➕", name:"Increase", video:"",
+    en:{ sum:"Add to a number variable.", how:["Tap <b>Increase</b>, choose a number or time variable.","Enter the amount (default 1) or choose another variable as the amount."], tip:["Typical use: a counter inside a loop."] },
+    vi:{ sum:"Cộng thêm vào một biến số.", how:["Bấm <b>Increase</b>, chọn một biến kiểu số hoặc thời gian.","Nhập lượng cộng (mặc định 1) hoặc chọn một biến khác làm lượng cộng."], tip:["Thường dùng làm bộ đếm trong vòng lặp."] } },
+  { id:"decrease", icon:"➖", name:"Decrease", video:"",
+    en:{ sum:"Subtract from a number variable.", how:["Tap <b>Decrease</b>, choose a number or time variable.","Enter the amount (default 1) or choose another variable as the amount."], tip:["Typical use: count down the remaining rounds."] },
+    vi:{ sum:"Trừ bớt từ một biến số.", how:["Bấm <b>Decrease</b>, chọn một biến kiểu số hoặc thời gian.","Nhập lượng trừ (mặc định 1) hoặc chọn một biến khác làm lượng trừ."], tip:["Thường dùng để đếm ngược số lượt còn lại."] } },
+  { id:"pic-to-number", icon:"🔢", name:"Pic to Number", video:"",
+    en:{ sum:"Read a number from the screen into a variable.", how:["Tap <b>Pic to Number</b> and name the variable.","Go to the app, tap the bubble and draw the region containing the number."], tip:["Only the digits are kept: \"Wave 50.000\" becomes 50000. 12.5K and 1.2M are understood.","Set a default value for when nothing can be read; empty keeps the previous value."] },
+    vi:{ sum:"Đọc một con số trên màn hình vào biến.", how:["Bấm <b>Pic to Number</b> rồi đặt tên biến.","Chuyển sang app, bấm bong bóng và vẽ vùng chứa con số."], tip:["Chỉ giữ phần số: \"Wave 50.000\" thành 50000. Hiểu được 12.5K và 1.2M.","Đặt giá trị mặc định cho lúc không đọc được; để trống thì giữ giá trị cũ."] } },
+  { id:"pic-to-text", icon:"🔤", name:"Pic to Text", video:"",
+    en:{ sum:"Read letters from the screen into a variable.", how:["Tap <b>Pic to Text</b> and name the variable.","Draw the region to read."], tip:["Only letters are kept; digits and symbols are dropped."] },
+    vi:{ sum:"Đọc chữ cái trên màn hình vào biến.", how:["Bấm <b>Pic to Text</b> rồi đặt tên biến.","Vẽ vùng cần đọc."], tip:["Chỉ giữ chữ cái; số và ký hiệu bị bỏ."] } },
+  { id:"pic-to-string", icon:"🔣", name:"Pic to String", video:"",
+    en:{ sum:"Read everything in an area into a variable.", how:["Tap <b>Pic to String</b> and name the variable.","Draw the region to read."], tip:["Keeps letters, digits and symbols exactly as read."] },
+    vi:{ sum:"Đọc mọi thứ trong một vùng vào biến.", how:["Bấm <b>Pic to String</b> rồi đặt tên biến.","Vẽ vùng cần đọc."], tip:["Giữ nguyên chữ, số và ký hiệu đọc được."] } },
+  { id:"show-variable", icon:"👁", name:"Show Variable", video:"",
+    en:{ sum:"Show a variable's value on the screen.", how:["Tap <b>Show Variable</b> and choose the variable.","Set how long it stays visible."], tip:["Handy while building a macro, to check that a value is what you expect."] },
+    vi:{ sum:"Hiện giá trị của biến lên màn hình.", how:["Bấm <b>Show Variable</b> rồi chọn biến.","Đặt thời gian hiển thị."], tip:["Tiện khi đang dựng macro, để kiểm tra giá trị có đúng như mong đợi."] } },
+ ]},
+ { id:"organize", color:"#546E7A", en:"Organize", vi:"Sắp xếp", items:[
+  { id:"group", icon:"📁", name:"Group", video:"",
+    en:{ sum:"Put steps in a named, collapsible block.", how:["Tap <b>Group</b> and type a name.","Add or drag steps between the group's start and end."], tip:["A group only organizes the list; it does not change how the macro runs.","The copy button on the group header duplicates the whole block."] },
+    vi:{ sum:"Gom các bước vào một khối có tên, thu gọn được.", how:["Bấm <b>Group</b> rồi gõ tên.","Thêm hoặc kéo bước vào giữa điểm đầu và điểm cuối của nhóm."], tip:["Nhóm chỉ để sắp xếp danh sách; không đổi cách macro chạy.","Nút sao chép trên tiêu đề nhóm nhân bản cả khối."] } },
+  { id:"macro", icon:"📜", name:"Macro", video:"",
+    en:{ sum:"Run another saved macro as one step.", how:["Tap <b>Macro</b>.","Choose a saved macro, or create a new empty one by name."], tip:["Build a routine once (for example \"collect rewards\") and call it from several macros.","Two macros cannot call each other."] },
+    vi:{ sum:"Chạy một macro đã lưu khác như một bước.", how:["Bấm <b>Macro</b>.","Chọn một macro đã lưu, hoặc tạo macro trống mới bằng cách đặt tên."], tip:["Dựng một chuỗi thao tác một lần (ví dụ \"nhận thưởng\") rồi gọi từ nhiều macro.","Hai macro không được gọi lẫn nhau."] } },
+ ]},
+];
+
+const qLang = new URLSearchParams(location.search).get("lang");
+let lang = ((qLang === "vi" || qLang === "en") ? qLang : null) || (localStorage.getItem("guideLang") || ((navigator.language || "en").toLowerCase().startsWith("vi") ? "vi" : "en"));
+
+function render() {
+  const t = UI[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(e => { e.textContent = t[e.dataset.t]; });
+  document.getElementById("langBtn").textContent = t.other;
+  document.getElementById("startList").innerHTML = t.start.map(s => "<li>" + s + "</li>").join("");
+  const open = new Set([...document.querySelectorAll("details[open]")].map(d => d.id));
+  const box = document.getElementById("groups");
+  box.innerHTML = GROUPS.map(g =>
+    `<details class="group" id="${g.id}"><summary style="background:${g.color}">${g[lang]}</summary>` +
+    g.items.map(f => {
+      const c = f[lang];
+      const video = f.video ? `<h3>${t.video}</h3><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${f.video}" title="${f.name}" loading="lazy" allowfullscreen></iframe></div>` : "";
+      return `<details class="fn" id="${f.id}"><summary><span class="name">${f.icon} ${f.name}</span><span class="sum">${c.sum}</span><span class="tag">${f.free ? t.free : t.pro}</span></summary>` +
+        `<div class="body"><h3>${t.how}</h3><ol>${c.how.map(s => "<li>" + s + "</li>").join("")}</ol>` +
+        `<h3>${t.tip}</h3><ul>${c.tip.map(s => "<li>" + s + "</li>").join("")}</ul>${video}</div></details>`;
+    }).join("") + `</details>`).join("");
+  open.forEach(id => { const d = document.getElementById(id); if (d) d.open = true; });
+  openFromHash();
+}
+
+function openFromHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (el.tagName === "DETAILS") {
+    el.open = true;
+    const parent = el.parentElement.closest("details");
+    if (parent) parent.open = true;
+  }
+  el.scrollIntoView({ block: "start" });
+}
+
+document.getElementById("langBtn").addEventListener("click", () => {
+  lang = lang === "en" ? "vi" : "en";
+  localStorage.setItem("guideLang", lang);
+  render();
+});
+window.addEventListener("hashchange", openFromHash);
+render();
+</script>
+</body>
+</html>
